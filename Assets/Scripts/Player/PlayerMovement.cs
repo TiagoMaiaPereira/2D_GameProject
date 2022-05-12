@@ -17,8 +17,6 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     private float startingWalkSpeed = 2f;
 
-    //Bool
-    private bool canClimb = false;
 
     private void Awake()
     {
@@ -29,28 +27,11 @@ public class PlayerMovement : MonoBehaviour
     private void Update()
     {
         float horizontalInput = Input.GetAxisRaw("Horizontal");
-        float verticalInput = Input.GetAxisRaw("Vertical");
-        if (!canClimb)
-        {
-            playerRigidbody.velocity = new Vector2(horizontalInput * walkSpeed, playerRigidbody.velocity.y);
-        }
 
-        if (canClimb)
-        {
-            playerRigidbody.velocity = new Vector2(horizontalInput * walkSpeed, verticalInput * walkSpeed);
-        }
+        playerRigidbody.velocity = new Vector2(horizontalInput * walkSpeed, playerRigidbody.velocity.y);
+
 
         print(walkSpeed);
-    }
-
-    public void AllowClimb()
-    {
-        canClimb = true;
-    }
-
-    public void NoClimb()
-    {
-        canClimb = false;
     }
 
     public void SlowDownCharacter(float slowSpeed)
