@@ -6,6 +6,11 @@ using UnityEngine.UI;
 
 public class Oxygen : MonoBehaviour
 {
+    //
+
+
+    //Variables
+
     [SerializeField]
     private float maxOxygen = 100;
 
