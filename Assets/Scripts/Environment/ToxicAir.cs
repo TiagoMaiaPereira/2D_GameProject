@@ -7,6 +7,9 @@ public class ToxicAir : MonoBehaviour
 {
 
     [SerializeField]
+    private int speedToSlow = 2;
+
+    [SerializeField]
     private float inicialTime;
 
     [SerializeField]
@@ -21,6 +24,7 @@ public class ToxicAir : MonoBehaviour
         {
             other.GetComponent<BreathTime>().GiveTime(inicialTime);
             OnEnter.Invoke();
+            other.GetComponent<PlayerMovement>().SlowDownCharacter(speedToSlow);
         }
     }
 
@@ -29,6 +33,7 @@ public class ToxicAir : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             OnExit.Invoke();
+            other.GetComponent<PlayerMovement>().ReturnSpeed();
         }
     }
 
