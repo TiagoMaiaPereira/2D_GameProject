@@ -1,11 +1,15 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BreathTime : MonoBehaviour
 {
-    
+
+    [SerializeField]
+    private Image oxygenMeter = null;
 
     private float breathTime;
 
@@ -22,6 +26,7 @@ public class BreathTime : MonoBehaviour
         if (inAir)
         {
             breathTime -= Time.deltaTime;
+            //UpdateBar();
 
             if (breathTime <= 0f)
             {
@@ -35,6 +40,11 @@ public class BreathTime : MonoBehaviour
 
         timer.text = Mathf.Round(breathTime).ToString();
     }
+
+    /*private void UpdateBar()
+    {
+        oxygenMeter.fillAmount = breathTime;
+    }*/
 
     public void RedeuceTimer()
     {

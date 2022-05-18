@@ -36,7 +36,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void SlowDownCharacter(float slowSpeed)
     {
-        walkSpeed = walkSpeed / slowSpeed;
+        walkSpeed = walkSpeed * slowSpeed;
     }
 
     public void ReturnSpeed()

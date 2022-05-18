@@ -7,7 +7,7 @@ public class ToxicAir : MonoBehaviour
 {
 
     [SerializeField]
-    private int speedToSlow = 2;
+    private float speedToSlow = 2f;
 
     [SerializeField]
     private float inicialTime;
