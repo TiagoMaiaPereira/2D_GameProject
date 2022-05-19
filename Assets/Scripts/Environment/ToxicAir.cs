@@ -1,40 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
 
 public class ToxicAir : MonoBehaviour
 {
-
     [SerializeField]
-    private float speedToSlow = 2f;
-
-    [SerializeField]
-    private float inicialTime;
-
-    [SerializeField]
-    private UnityEvent OnEnter;
-
-    [SerializeField]
-    private UnityEvent OnExit;
+    private float time;
 
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
         {
-            other.GetComponent<BreathTime>().GiveTime(inicialTime);
-            OnEnter.Invoke();
-            other.GetComponent<PlayerMovement>().SlowDownCharacter(speedToSlow);
+            other.GetComponent<Breathing>().EnterToxicCloud(time);       
         }
     }
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        if (other.CompareTag("Player"))
-        {
-            OnExit.Invoke();
-            other.GetComponent<PlayerMovement>().ReturnSpeed();
-        }
+        other.GetComponent<Breathing>().ExitToxicCloud();
     }
 
 
