@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Events;
 
 public class Elevator : MonoBehaviour, IActivable, IInteractable
 {
@@ -30,6 +31,12 @@ public class Elevator : MonoBehaviour, IActivable, IInteractable
     [SerializeField]
     private Image interactPrompt;
 
+    [SerializeField]
+    private UnityEvent OnMove;
+
+    [SerializeField]
+    private UnityEvent OnStop;
+
     private void Awake()
     {
         startPosition = points[0].position;
@@ -53,6 +60,7 @@ public class Elevator : MonoBehaviour, IActivable, IInteractable
             {
                 StopMoving();
                 SwitchPosition();
+                OnStop.Invoke();
             }
         }
         
@@ -99,6 +107,7 @@ public class Elevator : MonoBehaviour, IActivable, IInteractable
 
     public void Interact()
     {
+        OnMove.Invoke();
         startTime = Time.time;
         canMove = true;
     }

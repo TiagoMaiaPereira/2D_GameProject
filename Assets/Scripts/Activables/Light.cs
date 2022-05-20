@@ -14,6 +14,11 @@ public class Light : MonoBehaviour, IActivable
         sprite = GetComponent<SpriteRenderer>();
     }
 
+    private void Start()
+    {
+        sprite.color = Color.red;
+    }
+
     public void Activate()
     {
         sprite.color = Color.green;

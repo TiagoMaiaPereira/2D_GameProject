@@ -12,7 +12,7 @@ public class Breathing : MonoBehaviour
     private float oxygenMax = 1;
 
     [SerializeField]
-    private float oxygenCurrent = 0;
+    private float oxygenCurrent = 1;
 
     [SerializeField]
     private float oxygenTimeToFill = 5f; 
