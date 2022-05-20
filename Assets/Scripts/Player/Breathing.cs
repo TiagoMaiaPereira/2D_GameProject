@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class Breathing : MonoBehaviour
@@ -25,6 +26,9 @@ public class Breathing : MonoBehaviour
     private Coroutine currentBreathingCoroutine = null;
 
     private bool isBreathing = false;
+
+    [SerializeField]
+    private UnityEvent Die;
 
     private void Start () {
         UpdateOxygenBar();
@@ -107,6 +111,11 @@ public class Breathing : MonoBehaviour
 
         if (oxygenCurrent < 0) {
             oxygenCurrent = 0;
+        }
+
+        if(oxygenCurrent == 0)
+        {
+            Die.Invoke();
         }
 
         UpdateOxygenBar();

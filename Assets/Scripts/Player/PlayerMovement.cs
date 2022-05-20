@@ -13,6 +13,9 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     private float walkSpeed = 2f;
 
+
+    private bool canMove = true;
+
     private void Awake()
     {
         playerRigidbody = GetComponent<Rigidbody2D>();
@@ -20,9 +23,18 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        float horizontalInput = Input.GetAxisRaw("Horizontal");
 
-        playerRigidbody.velocity = new Vector2(horizontalInput * walkSpeed, playerRigidbody.velocity.y);
+        if (canMove)
+        {
+            float horizontalInput = Input.GetAxisRaw("Horizontal");
 
+            playerRigidbody.velocity = new Vector2(horizontalInput * walkSpeed, playerRigidbody.velocity.y);
+        }
+    }
+
+    public void Die()
+    {
+        canMove = false;
+        playerRigidbody.velocity = new Vector2(0f, 0f);
     }
 }

@@ -70,6 +70,7 @@ public class Elevator : MonoBehaviour, IActivable, IInteractable
         }
     }
 
+
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
@@ -78,6 +79,8 @@ public class Elevator : MonoBehaviour, IActivable, IInteractable
             {
                 interactPrompt.gameObject.SetActive(true);
                 other.GetComponent<PlayerInteractions>().SetInteractible(this);
+                other.GetComponent<Transform>().SetParent(this.gameObject.transform);
+                print("Entered Trigger");
             }
         }
     }
@@ -87,6 +90,7 @@ public class Elevator : MonoBehaviour, IActivable, IInteractable
         if (canInteract)
         {
             other.GetComponent<PlayerInteractions>().SetInteractible(null);
+            other.GetComponent<Transform>().SetParent(null);
             interactPrompt.gameObject.SetActive(false);
         }
     }
@@ -110,6 +114,8 @@ public class Elevator : MonoBehaviour, IActivable, IInteractable
         OnMove.Invoke();
         startTime = Time.time;
         canMove = true;
+
+        print("Interact");
     }
 
     public void Activate()
@@ -121,4 +127,5 @@ public class Elevator : MonoBehaviour, IActivable, IInteractable
     {
         lightsOn++;
     }
+
 }
