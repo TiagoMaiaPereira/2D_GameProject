@@ -2,27 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
-public class Switch : MonoBehaviour, IInteractable
+public class InteractableObject : MonoBehaviour, IInteractable
 {
+
     [SerializeField]
-    private GameObject lightToLink = null;
+    private float timeToRead;
 
-
-    private IActivable linkedLight = null;
-
-
-    private void Awake()
-    {
-        linkedLight = lightToLink.GetComponent<IActivable>();    
-    }
+    [SerializeField]
+    private Canvas dialogueBox = null;
 
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
         {
-            other.GetComponent<PlayerInteractions>().SetInteractible(this);
             other.GetComponent<PlayerInteractions>().DisplayPrompt();
+            other.GetComponent<PlayerInteractions>().SetInteractible(this);
         }
     }
 
@@ -30,14 +26,19 @@ public class Switch : MonoBehaviour, IInteractable
     {
         if (other.CompareTag("Player"))
         {
-            other.GetComponent<PlayerInteractions>().SetInteractible(null);
             other.GetComponent<PlayerInteractions>().HidePrompt();
+            other.GetComponent<PlayerInteractions>().SetInteractible(null);
         }
     }
 
-
     public void Interact()
     {
-        linkedLight.Activate();
+        dialogueBox.gameObject.SetActive(true);
+        Invoke(nameof(DismissCanvas), timeToRead);
+    }
+
+    private void DismissCanvas()
+    {
+        dialogueBox.gameObject.SetActive(false);
     }
 }

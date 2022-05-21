@@ -49,6 +49,7 @@ public class Breathing : MonoBehaviour
         if (oxygenCurrent > oxygenMax) {
             oxygenCurrent = oxygenMax;
             UpdateOxygenBar();
+            DismissBar();
         }
 
     }
@@ -123,6 +124,16 @@ public class Breathing : MonoBehaviour
 
     private void StartAsphyxiation(float originalLimit) {
         StartCoroutine(Asphyxiate(originalLimit));
+    }
+
+    public void DisplayBar()
+    {
+        oxygenImage.gameObject.SetActive(true);
+    }
+
+    public void DismissBar()
+    {
+        oxygenImage.gameObject.SetActive(false);
     }
 
 }

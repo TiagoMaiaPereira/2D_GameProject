@@ -11,7 +11,8 @@ public class ToxicAir : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            other.GetComponent<Breathing>().EnterToxicCloud(time);       
+            other.GetComponent<Breathing>().EnterToxicCloud(time);
+            other.GetComponent<Breathing>().DisplayBar();
         }
     }
 

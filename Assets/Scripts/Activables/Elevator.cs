@@ -29,9 +29,6 @@ public class Elevator : MonoBehaviour, IActivable, IInteractable
     private bool canInteract = false;
 
     [SerializeField]
-    private Image interactPrompt;
-
-    [SerializeField]
     private UnityEvent OnMove;
 
     [SerializeField]
@@ -77,7 +74,7 @@ public class Elevator : MonoBehaviour, IActivable, IInteractable
         {
             if (canInteract)
             {
-                interactPrompt.gameObject.SetActive(true);
+                other.GetComponent<PlayerInteractions>().DisplayPrompt();
                 other.GetComponent<PlayerInteractions>().SetInteractible(this);
                 other.GetComponent<Transform>().SetParent(this.gameObject.transform);
                 print("Entered Trigger");
@@ -89,9 +86,9 @@ public class Elevator : MonoBehaviour, IActivable, IInteractable
     {
         if (canInteract)
         {
+            other.GetComponent<PlayerInteractions>().HidePrompt();
             other.GetComponent<PlayerInteractions>().SetInteractible(null);
             other.GetComponent<Transform>().SetParent(null);
-            interactPrompt.gameObject.SetActive(false);
         }
     }
 
