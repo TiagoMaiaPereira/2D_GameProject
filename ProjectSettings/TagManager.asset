@@ -50,12 +50,12 @@ TagManager:
   - name: Player
     uniqueID: 4203616267
     locked: 0
-  - name: UI
-    uniqueID: 3724464993
-    locked: 0
   - name: Gas
     uniqueID: 2869860667
     locked: 0
   - name: Ground
     uniqueID: 2202046763
+    locked: 0
+  - name: UI
+    uniqueID: 3724464993
     locked: 0

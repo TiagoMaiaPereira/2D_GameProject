@@ -1,12 +1,31 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
+using UnityEngine.UI;
+using TMPro;
+
 
 public class DialogueManager : MonoBehaviour
 {
     public static DialogueManager Instance { get; private set; } = null;
 
     private Queue<string> sentences;
+
+    [SerializeField]
+    private UnityEvent InDialogue;
+
+    [SerializeField]
+    private UnityEvent OffDialogue;
+
+    [SerializeField]
+    private TMP_Text characterName;
+
+    [SerializeField]
+    private TMP_Text dialogueText;
+
+    public bool inDialogue { get; private set; } = false;
 
     private void Awake()
     {
@@ -26,6 +45,46 @@ public class DialogueManager : MonoBehaviour
 
     public void StartDialogue(DialogueScriptableObject dialogue)
     {
+        characterName.text = dialogue.charName;
+
         Debug.Log("Dialogue started with " + dialogue.charName);
+
+        InDialogue.Invoke();
+
+        sentences.Clear();
+
+        inDialogue = true;
+
+        foreach(string sentence in dialogue.sentences)
+        {
+            ///Summary
+            ///For each sentence in the scriptable object's sentences
+            ///array, it will add them to the queue in order
+            sentences.Enqueue(sentence);
+        }
+
+        DisplayNextSentence();
+        
+    }
+
+    public void DisplayNextSentence()
+    {
+        if(sentences.Count == 0)
+        {
+            print("No more sentences");
+            EndDialogue();
+            return;
+        }
+
+        string sentence = sentences.Dequeue();
+        Debug.Log(sentence);
+        dialogueText.text = sentence;
+    }
+
+    private void EndDialogue()
+    {
+        inDialogue = false;
+        Debug.Log("End of conversation...");
+        OffDialogue.Invoke();
     }
 }

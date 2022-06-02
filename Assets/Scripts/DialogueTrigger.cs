@@ -1,11 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class DialogueTrigger : MonoBehaviour, IInteractable
 {
     [SerializeField]
     private DialogueScriptableObject dialogue;
+
+    private bool inDialogue;
+
+    [SerializeField]
+    private Image textPanel; 
+
+    private void Update()
+    {
+        inDialogue = DialogueManager.Instance.inDialogue;
+    }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -26,6 +37,15 @@ public class DialogueTrigger : MonoBehaviour, IInteractable
     }
     public void Interact()
     {
-        DialogueManager.Instance.StartDialogue(dialogue);
+        if (inDialogue)
+        {
+            print("In Dialogue...");
+            DialogueManager.Instance.DisplayNextSentence();
+        }
+        else
+        {
+            DialogueManager.Instance.StartDialogue(dialogue);
+        }
+
     }
 }

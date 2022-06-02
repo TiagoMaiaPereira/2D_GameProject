@@ -10,8 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a4462349c7fc5484cbd385bb1c482d10, type: 3}
-  m_Name: Dialogue
+  m_Name: Seth
   m_EditorClassIdentifier: 
-  charName: Yelan
+  charName: Seth
   sentences:
-  - Yo!
+  - Have you seen the news lately?
+  - 'Apparenty Project O2 will now be named
+
+    Surounded by the Past.'
+  - Pretty cool name right?
+  - 'I also heard that Rayvin is working on the music
+
+    for the game.'
+  - That got Karry all riled up.
