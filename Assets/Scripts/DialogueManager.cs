@@ -25,6 +25,9 @@ public class DialogueManager : MonoBehaviour
     [SerializeField]
     private TMP_Text dialogueText;
 
+    [SerializeField]
+    private GameObject dialoguePanel = null;
+
     public bool inDialogue { get; private set; } = false;
 
     private void Awake()
@@ -46,6 +49,8 @@ public class DialogueManager : MonoBehaviour
     public void StartDialogue(DialogueScriptableObject dialogue)
     {
         characterName.text = dialogue.charName;
+
+        dialoguePanel.SetActive(true);
 
         Debug.Log("Dialogue started with " + dialogue.charName);
 
@@ -84,6 +89,7 @@ public class DialogueManager : MonoBehaviour
     private void EndDialogue()
     {
         inDialogue = false;
+        dialoguePanel.SetActive(false);
         Debug.Log("End of conversation...");
         OffDialogue.Invoke();
     }

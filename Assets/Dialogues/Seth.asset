@@ -14,12 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   charName: Seth
   sentences:
-  - Have you seen the news lately?
-  - 'Apparenty Project O2 will now be named
+  - 'You can use the purple switch
 
-    Surounded by the Past.'
-  - Pretty cool name right?
-  - 'I also heard that Rayvin is working on the music
+    to activate the elevator.'
+  - 'You can only use the elevator if the light
 
-    for the game.'
-  - That got Karry all riled up.
+    above it is green.'
