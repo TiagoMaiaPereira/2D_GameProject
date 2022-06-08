@@ -30,7 +30,8 @@ public class Breathing : MonoBehaviour
     [SerializeField]
     private UnityEvent Die;
 
-    private void Start () {
+    private void Start () 
+    {
         UpdateOxygenBar();
 
         StartBreathing();

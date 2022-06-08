@@ -45,7 +45,6 @@ public class DialogueManager : MonoBehaviour
         sentences = new Queue<string>();
     }
 
-
     public void StartDialogue(DialogueScriptableObject dialogue)
     {
         characterName.text = dialogue.charName;
@@ -93,4 +92,5 @@ public class DialogueManager : MonoBehaviour
         Debug.Log("End of conversation...");
         OffDialogue.Invoke();
     }
+
 }

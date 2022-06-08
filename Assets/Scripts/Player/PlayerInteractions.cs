@@ -10,9 +10,7 @@ public class PlayerInteractions : MonoBehaviour
     [SerializeField]
     private Image interactPrompt = null;
 
-
     private bool canInteract = true;
-
 
     private void Update()
     {
