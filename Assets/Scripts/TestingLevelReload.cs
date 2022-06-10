@@ -7,7 +7,7 @@ public class TestingLevelReload : MonoBehaviour
 {
     public void ReloadLevel()
     {
-        SceneManager.LoadScene("TestingScene");
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }
 

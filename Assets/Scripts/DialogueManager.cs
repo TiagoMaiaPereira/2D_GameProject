@@ -14,12 +14,6 @@ public class DialogueManager : MonoBehaviour
     private Queue<string> sentences;
 
     [SerializeField]
-    private UnityEvent InDialogue;
-
-    [SerializeField]
-    private UnityEvent OffDialogue;
-
-    [SerializeField]
     private TMP_Text characterName;
 
     [SerializeField]
@@ -53,8 +47,6 @@ public class DialogueManager : MonoBehaviour
 
         Debug.Log("Dialogue started with " + dialogue.charName);
 
-        InDialogue.Invoke();
-
         sentences.Clear();
 
         inDialogue = true;
@@ -85,12 +77,11 @@ public class DialogueManager : MonoBehaviour
         dialogueText.text = sentence;
     }
 
-    private void EndDialogue()
+    public void EndDialogue()
     {
         inDialogue = false;
         dialoguePanel.SetActive(false);
         Debug.Log("End of conversation...");
-        OffDialogue.Invoke();
     }
 
 }

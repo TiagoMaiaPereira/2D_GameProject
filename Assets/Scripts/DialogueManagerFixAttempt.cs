@@ -6,13 +6,15 @@ public class DialogueManagerFixAttempt : MonoBehaviour
 {
     public GameObject activePlayer;
 
-    private void Start()
+    /*private void Awake()
     { 
         activePlayer = GameObject.FindGameObjectWithTag("Player");
-    }
+    }*/
 
     private void Update()
     {
+        activePlayer = GameObject.FindGameObjectWithTag("Player");
+
         if (activePlayer != null)
         {
             Debug.Log("Player Detected!");

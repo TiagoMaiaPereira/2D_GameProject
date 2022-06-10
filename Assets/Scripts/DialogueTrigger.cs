@@ -33,6 +33,7 @@ public class DialogueTrigger : MonoBehaviour, IInteractable
         {
             other.GetComponent<PlayerInteractions>().SetInteractible(null);
             other.GetComponent<PlayerInteractions>().HidePrompt();
+            DialogueManager.Instance.EndDialogue();
         }
     }
     public void Interact()
