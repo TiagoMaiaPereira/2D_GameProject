@@ -24,6 +24,8 @@ public class DialogueManager : MonoBehaviour
 
     public bool inDialogue { get; private set; } = false;
 
+    public bool dialogueEnded { get; set; } = false;
+
     private void Awake()
     {
         if(Instance == null)
@@ -41,6 +43,8 @@ public class DialogueManager : MonoBehaviour
 
     public void StartDialogue(DialogueScriptableObject dialogue)
     {
+        dialogueEnded = false;
+
         characterName.text = dialogue.charName;
 
         dialoguePanel.SetActive(true);
@@ -50,7 +54,7 @@ public class DialogueManager : MonoBehaviour
         sentences.Clear();
 
         inDialogue = true;
-
+        
         foreach(string sentence in dialogue.sentences)
         {
             ///Summary
@@ -77,9 +81,10 @@ public class DialogueManager : MonoBehaviour
         dialogueText.text = sentence;
     }
 
-    public void EndDialogue()
+    private void EndDialogue()
     {
         inDialogue = false;
+        dialogueEnded = true;
         dialoguePanel.SetActive(false);
         Debug.Log("End of conversation...");
     }
