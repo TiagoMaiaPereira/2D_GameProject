@@ -22,16 +22,20 @@ public class DialogueManager : MonoBehaviour
     [SerializeField]
     private GameObject dialoguePanel = null;
 
-    public bool inDialogue { get; private set; } = false;
+    private bool inDialogue = false;
 
-    public bool dialogueEnded { get; set; } = false;
+    [SerializeField]
+    private UnityEvent OnStartDialogue;
+
+    [SerializeField]
+    private UnityEvent OnEndDialogue;
 
     private void Awake()
     {
         if(Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject);
+            //DontDestroyOnLoad(gameObject);
         }
         else
         {
@@ -43,7 +47,8 @@ public class DialogueManager : MonoBehaviour
 
     public void StartDialogue(DialogueScriptableObject dialogue)
     {
-        dialogueEnded = false;
+
+        //mudar de void para bool e retornar inDialogue no fim
 
         characterName.text = dialogue.charName;
 
@@ -54,6 +59,8 @@ public class DialogueManager : MonoBehaviour
         sentences.Clear();
 
         inDialogue = true;
+
+        OnStartDialogue.Invoke();
         
         foreach(string sentence in dialogue.sentences)
         {
@@ -84,9 +91,21 @@ public class DialogueManager : MonoBehaviour
     private void EndDialogue()
     {
         inDialogue = false;
-        dialogueEnded = true;
+        OnEndDialogue.Invoke();
         dialoguePanel.SetActive(false);
         Debug.Log("End of conversation...");
+    }
+
+    public void DialogueInteraction(DialogueScriptableObject dialogueTrigger)
+    {
+        if (inDialogue)
+        {
+            DisplayNextSentence();
+        }
+        else
+        {
+            StartDialogue(dialogueTrigger);
+        }
     }
 
 }

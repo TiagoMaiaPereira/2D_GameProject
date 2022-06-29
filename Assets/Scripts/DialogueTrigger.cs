@@ -9,24 +9,8 @@ public class DialogueTrigger : MonoBehaviour, IInteractable
     [SerializeField]
     private DialogueScriptableObject dialogue;
 
-    private bool inDialogue;
-
-    private bool dialogueEnd;
-
     [SerializeField]
     private Image textPanel;
-
-    [SerializeField]
-    private UnityEvent OnStartDialogue;
-
-    [SerializeField]
-    private UnityEvent OnEndDialogue;
-
-    private void Update()
-    {
-        inDialogue = DialogueManager.Instance.inDialogue;
-        dialogueEnd = DialogueManager.Instance.dialogueEnded;
-    }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -49,21 +33,6 @@ public class DialogueTrigger : MonoBehaviour, IInteractable
 
     public void Interact()
     {
-        if (inDialogue)
-        {
-            print("In Dialogue...");
-            DialogueManager.Instance.DisplayNextSentence();
-        }
-        else
-        {
-            DialogueManager.Instance.StartDialogue(dialogue);
-            OnStartDialogue.Invoke();
-        }
-
-        if (dialogueEnd)
-        {
-            OnEndDialogue.Invoke();
-        }
-
+        DialogueManager.Instance.DialogueInteraction(dialogue);
     }
 }
